@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { User } from '../Model/User';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-register',
@@ -25,7 +26,15 @@ export class RegisterComponent implements OnInit {
   registerFunction(){
    const  username = this.name.nativeElement.value
    const userpassword = this.password.nativeElement.value
-   this.userdata.push({Userid:this.userdata.length+1,Username:username,Userpassword:userpassword,Userroll:"Basic-User"})
+   if(username === "" || userpassword === "")
+   {
+    Swal.fire("Please Input All Fild");
+   }
+   this.userdata.push({Userid:this.userdata.length+1,Username:username,Userpassword:userpassword,Userroll:"Basic-User",islogin:false})
   localStorage.setItem("Userdata",JSON.stringify(this.userdata))
   }
+  
+
+
+
 }

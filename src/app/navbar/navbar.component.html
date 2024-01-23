@@ -1,0 +1,41 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" routerLink="/home">Company Management</a>
+      
+      <!-- Button to toggle the navigation menu -->
+      <button
+        data-mdb-collapse-init
+        class="navbar-toggler"
+        type="button"
+        data-mdb-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <i class="fas fa-bars"></i>
+      </button>
+  
+      <!-- Navigation links -->
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active text-success" style="font-weight: 600;" aria-current="page" routerLink="employee">Employee</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-success" style="font-weight: 600;" routerLink="compnay">Company</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-success" style="font-weight: 600;" routerLink="branch">Branch</a>
+          </li>
+        </ul>
+      </div>
+  
+      <!-- Right side username -->
+      <div class="ml-auto">
+        <span class="navbar-text" style="font-weight: 700;">
+          <i class="fas fa-user">Hello , </i>{{username}}</span>
+      </div>
+    </div>
+  </nav>
+<router-outlet></router-outlet>
+  

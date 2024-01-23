@@ -1,6 +1,8 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 // import { User } from '../Model/User';
 import { User } from './../Model/User';
+import { Route, Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -14,13 +16,18 @@ export class LoginComponent implements OnInit {
   @ViewChild('password')password!: ElementRef;
   users:User[]=[]
   
-  constructor() { }
+  constructor(private route:Router) { }
 
   ngOnInit(): void {
   }
   LoginFunction(){
     const Username= this.username.nativeElement.value;
     const UserPassword= this.password.nativeElement.value;
+    if(Username === "" || UserPassword === "")
+   {
+    Swal.fire("Please Input All Fild");
+    return
+   }
     console.log(Username);
     
     const userdata = localStorage.getItem('Userdata')
@@ -36,12 +43,13 @@ export class LoginComponent implements OnInit {
     
 
     if(founduser == -1){
-      alert("no")
       return
     }
     else
     {
-      alert("yrs")
+      this.users[founduser].islogin = true
+      localStorage.setItem('loguser', JSON.stringify(this.users[founduser]));
+      this.route.navigate(['/navbar'])
     }
     
     

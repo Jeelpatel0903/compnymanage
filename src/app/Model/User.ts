@@ -3,5 +3,6 @@ export class User {
     Username : string | null = null;
     Userpassword :string | null = null
     Userroll : string | null = null;
+    islogin : boolean = false
 
 }
