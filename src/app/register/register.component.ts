@@ -14,10 +14,6 @@ export class RegisterComponent implements OnInit {
   @ViewChild('password')password!: ElementRef;
 
   userdata:User[]=[]
-
-  
-
-
   constructor() { }
 
   ngOnInit(): void {

@@ -11,7 +11,7 @@ import { BranchComponent } from './branch/branch.component';
 const routes: Routes = [
   {path:"register",component:RegisterComponent},
   {path:"login",component:LoginComponent},
-  {path:"navbar",component:NavbarComponent,
+  {path:"dashbord",component:DashbordComponent,
   children:[
     {
       path:"employee",

@@ -8,7 +8,7 @@ import { User } from '../Model/User';
 })
 export class NavbarComponent implements OnInit {
 
-  getdata:User[]=[]
+  getdata:User | null = null
   username:string | null = null
   constructor() { }
 
@@ -17,19 +17,7 @@ export class NavbarComponent implements OnInit {
     
     if(userdata){
       this.getdata = JSON.parse(userdata)
+      this.username = this.getdata?.Username || null
     }
-
-    this.username = this.getdata[0].Username
-
-    
-    
-    
-}
-
-
-  
-    
-    
-    
-
+  }
 }

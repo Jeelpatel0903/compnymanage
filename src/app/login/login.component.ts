@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
     {
       this.users[founduser].islogin = true
       localStorage.setItem('loguser', JSON.stringify(this.users[founduser]));
-      this.route.navigate(['/navbar'])
+      this.route.navigate(['/dashbord'])
     }
     
     
