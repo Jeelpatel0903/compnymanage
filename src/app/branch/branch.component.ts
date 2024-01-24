@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Branch } from '../Model/Branch';
 import { User } from '../Model/User';
 import { ActivatedRoute } from '@angular/router';
+import Swal from 'sweetalert2';
+import { BranchService } from '../services/branch.service';
 
 @Component({
   selector: 'app-branch',
@@ -13,16 +15,11 @@ export class BranchComponent implements OnInit {
   EditBtn:boolean = false
   DeleteBtn:boolean = false
   userroll:string | null = null
+  getIndex:number | null = null
 
-  branchDetails:Branch[]=[
-    {branchId:201,companyId:101,branchName:"Reliance",branchCount:4},
-    {branchId:202,companyId:102,branchName:"Adani",branchCount:5},
-    {branchId:203,companyId:103,branchName:"Balaji",branchCount:6},
-    {branchId:204,companyId:104,branchName:"Britaniya",branchCount:3},
-    {branchId:205,companyId:105,branchName:"Sunfeast",branchCount:2},
-  ]
+  branchDetails:Branch[]=[]
 
-  constructor(private active:ActivatedRoute) { }
+  constructor(private active:ActivatedRoute,private service:BranchService) { }
 
   ngOnInit(): void {
 
@@ -48,6 +45,26 @@ export class BranchComponent implements OnInit {
     {
       this.EditBtn = false;
       this.DeleteBtn = false
+    }
+     this.branchDetails = this.service.branchDetails;
+  }
+  DeleteBtnClik(data:Branch){
+    this.getIndex = this.branchDetails.findIndex((e)=>{
+      return e.branchId === data.branchId
+    })
+    if(this.getIndex === -1){
+      return
+    }
+    else
+    {
+      console.log(this.getIndex);
+      
+      this.branchDetails.splice(this.getIndex,1)
+      Swal.fire({
+        title: "Good job!",
+        text: "Your Item Delete SuccessFully",
+        icon: "success"
+      });
     }
   }
 }

@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Company } from '../Model/Compnay';
 import { User } from '../Model/User';
 import { ActivatedRoute } from '@angular/router';
+import Swal from 'sweetalert2';
+import { UserService } from '../services/user.service';
+import { CompnayService } from '../services/compnay.service';
 
 @Component({
   selector: 'app-company',
@@ -13,16 +16,10 @@ export class CompanyComponent implements OnInit {
   EditBtn:boolean = false
   DeleteBtn:boolean = false
   userroll:string | null = null
-  companyDetails:Company[]=[
-    {CompanyId:101,CompanyName:"Reliance",CompanyLocation:"Ahmedabad",CompanyGst:12345},
-    {CompanyId:102,CompanyName:"Adani",CompanyLocation:"Rajkot",CompanyGst:67890},
-    {CompanyId:103,CompanyName:"Balaji",CompanyLocation:"Surat",CompanyGst:13525},
-    {CompanyId:104,CompanyName:"Britaniya",CompanyLocation:"Baroda",CompanyGst:85743},
-    {CompanyId:105,CompanyName:"Sunfeast",CompanyLocation:"bhavnagar",CompanyGst:65345},
-  ]
-
-  constructor(private active:ActivatedRoute){}
-
+  getIndex:number | null = null
+  
+  constructor(private active:ActivatedRoute,private service:CompnayService){}
+  companyDetails:Company[]=[]
 
   ngOnInit(): void {
     localStorage.setItem("CompanyDetails",JSON.stringify(this.companyDetails))
@@ -50,6 +47,28 @@ export class CompanyComponent implements OnInit {
     {
       this.EditBtn = false;
       this.DeleteBtn = false
+    }
+    this.companyDetails=this.service.companyDetails;
+
+  }
+
+  DeleteBtnClik(data:Company){
+    this.getIndex = this.companyDetails.findIndex((e)=>{
+      return e.CompanyId === data.CompanyId
+    })
+    if(this.getIndex === -1){
+      return
+    }
+    else
+    {
+      console.log(this.getIndex);
+      
+      this.companyDetails.splice(this.getIndex,1)
+      Swal.fire({
+        title: "Good job!",
+        text: "Your Item Delete SuccessFully",
+        icon: "success"
+      });
     }
   }
 }

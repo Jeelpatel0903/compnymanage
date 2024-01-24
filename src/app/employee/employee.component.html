@@ -13,8 +13,8 @@
             <th scope="row">{{item.Userid}}</th>
             <td>{{item.Username}}</td>
             <td>{{item.Userroll}}</td>
-            <td *ngIf="EditBtn"><i class="bi bi-pencil-square"></i></td>
-            <td *ngIf="DeleteBtn"><i class="bi bi-trash3-fill text-danger"></i></td>
+            <td *ngIf="EditBtn" (click)="EditBtnClick()"><i class="bi bi-pencil-square"></i></td>
+            <td *ngIf="DeleteBtn" (click)="DeleteBtnClik(item)"><i class="bi bi-trash3-fill text-danger"></i></td>
           </tr>
         </tbody>
       </table>

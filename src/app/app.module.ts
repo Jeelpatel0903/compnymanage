@@ -11,6 +11,7 @@ import { EmployeeComponent } from './employee/employee.component';
 import { CompanyComponent } from './company/company.component';
 import { BranchComponent } from './branch/branch.component';
 import { NavbarComponent } from './navbar/navbar.component';
+// import { EmployeeService } from './services/employee.service';
 
 @NgModule({
   declarations: [

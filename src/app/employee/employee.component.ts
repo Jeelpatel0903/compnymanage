@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../Model/User';
 import { ActivatedRoute } from '@angular/router';
 // import { EmployeeService } from '../services/employee.service';
-// import { Employee } from '../Model/Employee';
+import Swal from 'sweetalert2';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-employee',
@@ -14,15 +15,10 @@ export class EmployeeComponent implements OnInit {
   EditBtn:boolean = false
   DeleteBtn:boolean = false
   userroll:string | null = null
-   EmployeeData:User[]=[
-    {Userid:1,Username:"Jeel",Userpassword:"123456",Userroll:"Super-Admin",islogin:false},
-    {Userid:2,Username:"Arjun",Userpassword:"00000",Userroll:"Admin",islogin:false},
-    {Userid:3,Username:"Manthan",Userpassword:"1234",Userroll:"Basic-User",islogin:false},
-    {Userid:4,Username:"Mayur",Userpassword:"12345",Userroll:"Basic-User",islogin:false},
-    {Userid:5,Username:"Ayuhsi",Userpassword:"123456",Userroll:"Admin",islogin:false},
-   ]
+  getIndex:number | null = null
+   EmployeeData:User[]=[]
   
-   constructor(private active:ActivatedRoute){}
+   constructor(private active:ActivatedRoute,private service:UserService){}
   ngOnInit(): void {
   // this.EmployeeData = this.employeeServices.getEmployeeDetails()
   localStorage.setItem("Employee",JSON.stringify(this.EmployeeData))
@@ -48,6 +44,30 @@ export class EmployeeComponent implements OnInit {
       this.EditBtn = false;
       this.DeleteBtn = false
     }
+    this.EmployeeData=this.service.user;
     
+  }
+
+  DeleteBtnClik(data:User){
+    this.getIndex = this.EmployeeData.findIndex((e)=>{
+      return e.Userid === data.Userid
+    })
+    if(this.getIndex === -1){
+      return
+    }
+    else
+    {
+      console.log(this.getIndex);
+      
+      this.EmployeeData.splice(this.getIndex,1)
+      Swal.fire({
+        title: "Good job!",
+        text: "Your Item Delete SuccessFully",
+        icon: "success"
+      });
+    }
+  }
+  EditBtnClick(){
+
   }
 }
