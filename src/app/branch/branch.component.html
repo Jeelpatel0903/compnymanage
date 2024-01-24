@@ -1,1 +1,21 @@
-<p>branch works!</p>
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Branch ID</th>
+        <th scope="col">Branch Name</th>
+        <th scope="col">Branch Count</th>
+        <th scope="col">Company Id</th>
+        <th scope="col" colspan="2">Action</th>
+
+      </tr>
+    </thead>
+    <tbody *ngFor="let item of branchDetails">
+      <tr>
+        <th scope="row">{{item.branchId}}</th>
+        <td>{{item.branchName}}</td>
+        <td>{{item.branchCount}}</td>
+        <td>{{item.companyId}}</td>
+        <td *ngIf="EditBtn"><i class="bi bi-pencil-square"></i></td>
+        <td *ngIf="DeleteBtn"><i class="bi bi-trash3-fill text-danger"></i></td>
+    </tbody>
+  </table>

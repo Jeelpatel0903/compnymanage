@@ -4,13 +4,17 @@
             <th scope="col">ID</th>
             <th scope="col">Name</th>
             <th scope="col">Gst</th>
+            <th *ngIf="EditBtn" scope="col" colspan="2">Action</th>
+
           </tr>
         </thead>
         <tbody *ngFor="let item of EmployeeData">
           <tr>
-            <th scope="row">{{item.id}}</th>
-            <td>{{item.name}}</td>
-            <td>{{item.gst}}</td>
+            <th scope="row">{{item.Userid}}</th>
+            <td>{{item.Username}}</td>
+            <td>{{item.Userroll}}</td>
+            <td *ngIf="EditBtn"><i class="bi bi-pencil-square"></i></td>
+            <td *ngIf="DeleteBtn"><i class="bi bi-trash3-fill text-danger"></i></td>
           </tr>
         </tbody>
       </table>

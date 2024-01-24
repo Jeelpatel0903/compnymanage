@@ -9,6 +9,7 @@ import { CompanyComponent } from './company/company.component';
 import { BranchComponent } from './branch/branch.component';
 
 const routes: Routes = [
+  {path:"",component:RegisterComponent},
   {path:"register",component:RegisterComponent},
   {path:"login",component:LoginComponent},
   {path:"dashbord",component:DashbordComponent,

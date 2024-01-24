@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Company } from '../Model/Compnay';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-dashbord',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashbordComponent implements OnInit {
 
-  constructor() { }
+  CompanyData:Company[]=[
+   ]
+
+   userroll:string | null = null
+  constructor(private acive:ActivatedRoute) { }
 
   ngOnInit(): void {
+   this.userroll =  this.acive.snapshot.queryParamMap.get('userlroll')
   }
+
 
 }

@@ -1,1 +1,22 @@
-<p>company works!</p>
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Company ID</th>
+        <th scope="col">Company Name</th>
+        <th scope="col">Company Location</th>
+        <th scope="col">Company Gst</th>
+        <th scope="col" colspan="2">Action</th>
+
+      </tr>
+    </thead>
+    <tbody *ngFor="let item of companyDetails">
+      <tr>
+        <th scope="row">{{item.CompanyId}}</th>
+        <td>{{item.CompanyName}}</td>
+        <td>{{item.CompanyLocation}}</td>
+        <td>{{item.CompanyGst}}</td>
+        <td *ngIf="EditBtn"><i class="bi bi-pencil-square"></i></td>
+        <td *ngIf="DeleteBtn"><i class="bi bi-trash3-fill text-danger"></i></td>
+      </tr>
+    </tbody>
+  </table>

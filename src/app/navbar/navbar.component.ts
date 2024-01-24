@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { User } from '../Model/User';
 
 @Component({
@@ -8,6 +8,7 @@ import { User } from '../Model/User';
 })
 export class NavbarComponent implements OnInit {
 
+  @Input() roll:string | null = null
   getdata:User | null = null
   username:string | null = null
   constructor() { }

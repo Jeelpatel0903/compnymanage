@@ -13,7 +13,10 @@ export class RegisterComponent implements OnInit {
   @ViewChild('name')name!: ElementRef;
   @ViewChild('password')password!: ElementRef;
 
-  userdata:User[]=[]
+  userdata:User[]=[
+    {Userid:1,Username:"Jeel",Userpassword:"123456",Userroll:"Super-Admin",islogin:false},
+    {Userid:2,Username:"Arjun",Userpassword:"00000",Userroll:"Admin",islogin:false},
+  ]
   constructor() { }
 
   ngOnInit(): void {
