@@ -19,5 +19,6 @@ export class DashbordComponent implements OnInit {
    this.userroll =  this.acive.snapshot.queryParamMap.get('userlroll')
   }
 
+  
 
 }

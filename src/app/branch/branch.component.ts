@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Branch } from '../Model/Branch';
 import { User } from '../Model/User';
 import { ActivatedRoute } from '@angular/router';
@@ -18,6 +18,11 @@ export class BranchComponent implements OnInit {
   getIndex:number | null = null
 
   branchDetails:Branch[]=[]
+
+  @ViewChild('id')id!:ElementRef;
+  @ViewChild('name')name!:ElementRef;
+  @ViewChild('count')count!:ElementRef;
+  @ViewChild('compnayid')compnayid!:ElementRef;
 
   constructor(private active:ActivatedRoute,private service:BranchService) { }
 
@@ -66,5 +71,29 @@ export class BranchComponent implements OnInit {
         icon: "success"
       });
     }
+  }
+  EditBtnClick(data:Branch){
+    this.getIndex = this.branchDetails.findIndex((e)=>{
+      return e.branchId === data.branchId
+    })
+    
+    this.id.nativeElement.value = data.branchId
+    this.name.nativeElement.value = data.branchName
+    this.count.nativeElement.value = data.branchCount
+    this.compnayid.nativeElement.value = data.companyId
+
+  }
+
+  UpdateUSerDetails(){
+    this.branchDetails[this.getIndex!].branchId = this.id.nativeElement.value
+    this.branchDetails[this.getIndex!].branchName = this.name.nativeElement.value
+    this.branchDetails[this.getIndex!].branchCount = this.count.nativeElement.value
+    this.branchDetails[this.getIndex!].companyId = this.compnayid.nativeElement.value
+
+    this.id.nativeElement.value = ""
+    this.name.nativeElement.value = ""
+    this.count.nativeElement.value = ""
+    this.compnayid.nativeElement.value = ""
+
   }
 }

@@ -15,8 +15,25 @@
         <td>{{item.CompanyName}}</td>
         <td>{{item.CompanyLocation}}</td>
         <td>{{item.CompanyGst}}</td>
-        <td *ngIf="EditBtn"><i class="bi bi-pencil-square"></i></td>
+        <td *ngIf="EditBtn" (click)="EditBtnClick(item)"><i class="bi bi-pencil-square"></i></td>
             <td *ngIf="DeleteBtn" (click)="DeleteBtnClik(item)"><i class="bi bi-trash3-fill text-danger"></i></td>
       </tr>
     </tbody>
   </table>
+
+  <div class="container mt-5" >
+    <h1>Edit From</h1>
+    <div class="col-md-3">
+      <div class="col-mb-3">
+        <label for="" class="form-label">ID</label>
+        <input type="text" class="form-control" placeholder="Enter name" #id>
+        <label for="" class="form-label">Name</label>
+        <input type="text" class="form-control" placeholder="Enter name" #name>
+        <label for="" class="form-label">Location</label>
+        <input type="text" class="form-control" placeholder="Enter name" #location>
+        <label for="" class="form-label">gst</label>
+        <input type="text" class="form-control" placeholder="Enter name" #gst>
+        <button class="btn btn-success mt-3" (click)="UpdateUSerDetails()">Update</button>
+      </div>
+    </div>
+  </div>

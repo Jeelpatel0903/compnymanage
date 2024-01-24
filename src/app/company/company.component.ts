@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Company } from '../Model/Compnay';
 import { User } from '../Model/User';
 import { ActivatedRoute } from '@angular/router';
@@ -17,6 +17,12 @@ export class CompanyComponent implements OnInit {
   DeleteBtn:boolean = false
   userroll:string | null = null
   getIndex:number | null = null
+
+  @ViewChild('id')id!:ElementRef;
+  @ViewChild('name')name!:ElementRef;
+  @ViewChild('location')location!:ElementRef;
+  @ViewChild('gst')gst!:ElementRef;
+
   
   constructor(private active:ActivatedRoute,private service:CompnayService){}
   companyDetails:Company[]=[]
@@ -70,5 +76,29 @@ export class CompanyComponent implements OnInit {
         icon: "success"
       });
     }
+  }
+  EditBtnClick(data:Company){
+    this.getIndex = this.companyDetails.findIndex((e)=>{
+      return e.CompanyId === data.CompanyId
+    })
+    
+    this.id.nativeElement.value = data.CompanyId
+    this.name.nativeElement.value = data.CompanyName
+    this.location.nativeElement.value = data.CompanyLocation
+    this.gst.nativeElement.value = data.CompanyGst
+
+  }
+
+  UpdateUSerDetails(){
+    this.companyDetails[this.getIndex!].CompanyId = this.id.nativeElement.value
+    this.companyDetails[this.getIndex!].CompanyName = this.name.nativeElement.value
+    this.companyDetails[this.getIndex!].CompanyLocation = this.location.nativeElement.value
+    this.companyDetails[this.getIndex!].CompanyGst = this.gst.nativeElement.value
+
+    this.id.nativeElement.value = ""
+    this.name.nativeElement.value = ""
+    this.location.nativeElement.value = ""
+    this.gst.nativeElement.value = ""
+
   }
 }
