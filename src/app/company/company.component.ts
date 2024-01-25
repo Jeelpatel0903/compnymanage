@@ -81,11 +81,13 @@ export class CompanyComponent implements OnInit {
     this.getIndex = this.companyDetails.findIndex((e)=>{
       return e.CompanyId === data.CompanyId
     })
-    
+
     this.id.nativeElement.value = data.CompanyId
     this.name.nativeElement.value = data.CompanyName
     this.location.nativeElement.value = data.CompanyLocation
     this.gst.nativeElement.value = data.CompanyGst
+
+  
 
   }
 
