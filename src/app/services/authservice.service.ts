@@ -45,6 +45,11 @@ export class AuthserviceService {
       localStorage.setItem('loguser', JSON.stringify(this.users[founduser]));
       localStorage.setItem('token',JSON.stringify(this.islogin))
       this.roll = this.users[founduser].Userroll
+      Swal.fire({
+        title: "Good job!",
+        text: "Your Are Success Fully Login",
+        icon: "success"
+      });
       this.route.navigate(['/dashbord'] , {queryParams:{userlroll : this.users[founduser].Userroll}})
       return true
     }
@@ -52,6 +57,7 @@ export class AuthserviceService {
   logout(): void {
     // Remove the token from local storage
     localStorage.removeItem('token');
+    
     this.route.navigate(['/login'])
   }
 
