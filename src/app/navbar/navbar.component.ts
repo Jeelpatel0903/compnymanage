@@ -44,8 +44,8 @@ export class NavbarComponent implements OnInit {
           icon: "success"
         });
 
-        this.auth.logout()
       }
+      this.auth.logout()
     });
   }
 }
