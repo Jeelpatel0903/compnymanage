@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
 import { UserService } from '../services/user.service';
 import { User } from './../Model/User';
+import { AuthserviceService } from '../services/authservice.service';
 
 @Component({
   selector: 'app-employee',
@@ -23,28 +24,29 @@ export class EmployeeComponent implements OnInit {
    @ViewChild('roll')roll!:ElementRef;
 
   
-   constructor(private active:ActivatedRoute,private service:UserService){}
+   constructor(private active:ActivatedRoute,private service:UserService,private auth:AuthserviceService){}
   ngOnInit(): void {
   // this.EmployeeData = this.employeeServices.getEmployeeDetails()
   localStorage.setItem("Employee",JSON.stringify(this.EmployeeData))
-  // const userdata = localStorage.getItem('loguser')
-  this.userroll =  this.active.snapshot.queryParamMap.get('userroll')
+  const userdata = sessionStorage.getItem('loguser')
+  // this.userroll =  this.active.snapshot.queryParamMap.get('userroll')
 
-    // if(userdata){
-    //   this.LoginUser = JSON.parse(userdata)
-    // }
+  // this.userroll = this.auth.roll
+    if(userdata){
+      this.LoginUser = JSON.parse(userdata)
+    }
 
-    if(this.userroll === "Super-Admin")
+    if(this.LoginUser.Userroll === "Super-Admin")
     {
       this.EditBtn = true;
       this.DeleteBtn = true
     }
-    if(this.userroll === "Admin")
+    if(this.LoginUser.Userroll === "Admin")
     {
       this.EditBtn = true;
       this.DeleteBtn = false
     }
-    if(this.userroll === "Basic-User")
+    if(this.LoginUser.Userroll === "Basic-User")
     {
       this.EditBtn = false;
       this.DeleteBtn = false

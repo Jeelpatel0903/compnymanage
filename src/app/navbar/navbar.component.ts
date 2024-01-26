@@ -9,14 +9,12 @@ import Swal from 'sweetalert2';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-
-  @Input() roll:string | null = null
   getdata:User | null = null
   username:string | null = null
   constructor(private auth:AuthserviceService) { }
 
   ngOnInit(): void {
-    const userdata = localStorage.getItem('loguser')
+    const userdata = sessionStorage.getItem('loguser')
     
     if(userdata){
       this.getdata = JSON.parse(userdata)

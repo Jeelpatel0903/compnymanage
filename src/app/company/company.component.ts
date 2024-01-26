@@ -24,32 +24,34 @@ export class CompanyComponent implements OnInit {
   @ViewChild('gst')gst!:ElementRef;
 
   
-  constructor(private active:ActivatedRoute,private service:CompnayService){}
+  constructor(private active:ActivatedRoute,private service:CompnayService){
+    this.ngOnInit
+  }
   companyDetails:Company[]=[]
 
   ngOnInit(): void {
-    localStorage.setItem("CompanyDetails",JSON.stringify(this.companyDetails))
-    // const userdata = localStorage.getItem('loguser')
+    // localStorage.setItem("CompanyDetails",JSON.stringify(this.companyDetails))
+    const userdata = sessionStorage.getItem('loguser')
+    this.companyDetails = this.service.companyDetails
+    if(userdata){
+      this.LoginUser = JSON.parse(userdata)
+    }
 
-    // if(userdata){
-    //   this.LoginUser = JSON.parse(userdata)
-    // }
-
-  this.userroll =  this.active.snapshot.queryParamMap.get('userroll')
+  // this.userroll =  this.active.snapshot.queryParamMap.get('userroll')
 
     
 
-    if(this.userroll === "Super-Admin")
+    if(this.LoginUser.Userroll === "Super-Admin")
     {
       this.EditBtn = true;
       this.DeleteBtn = true
     }
-    if(this.userroll === "Admin")
+    if(this.LoginUser.Userroll === "Admin")
     {
       this.EditBtn = true;
       this.DeleteBtn = false
     }
-    if(this.userroll === "Basic-Use")
+    if(this.LoginUser.Userroll === "Basic-User")
     {
       this.EditBtn = false;
       this.DeleteBtn = false

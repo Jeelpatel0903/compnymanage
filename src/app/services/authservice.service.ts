@@ -37,20 +37,25 @@ export class AuthserviceService {
     
 
     if(founduser == -1){
+      Swal.fire({
+        title: "OOPS!",
+        text: "Please Cheack Your Name And Password",
+        icon: "error"
+      });
       return false
     }
     else
     {
       this.users[founduser].islogin = true
-      localStorage.setItem('loguser', JSON.stringify(this.users[founduser]));
+      sessionStorage.setItem('loguser', JSON.stringify(this.users[founduser]));
       localStorage.setItem('token',JSON.stringify(this.islogin))
-      this.roll = this.users[founduser].Userroll
+      // this.roll = this.users[founduser].Userroll
       Swal.fire({
         title: "Good job!",
         text: "Your Are Success Fully Login",
         icon: "success"
       });
-      this.route.navigate(['/dashbord'] , {queryParams:{userlroll : this.users[founduser].Userroll}})
+      this.route.navigate(['/dashbord'])
       return true
     }
   }

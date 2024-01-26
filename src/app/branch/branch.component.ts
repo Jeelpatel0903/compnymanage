@@ -28,30 +28,30 @@ export class BranchComponent implements OnInit {
 
   ngOnInit(): void {
 
-    const userdata = localStorage.getItem('loguser')
-    this.userroll =  this.active.snapshot.queryParamMap.get('userroll')
+    const userdata = sessionStorage.getItem('loguser')
+    // this.userroll =  this.active.snapshot.queryParamMap.get('userroll')
+    this.branchDetails = this.service.branchDetails;
 
 
-    // if(userdata){
-    //   this.LoginUser = JSON.parse(userdata)
-    // }
+    if(userdata){
+      this.LoginUser = JSON.parse(userdata)
+    }
 
-    if(this.userroll === "Super-Admin")
+    if(this.LoginUser.Userroll === "Super-Admin")
     {
       this.EditBtn = true;
       this.DeleteBtn = true
     }
-    if(this.userroll === "Admin")
+    if(this.LoginUser.Userroll === "Admin")
     {
       this.EditBtn = true;
       this.DeleteBtn = false
     }
-    if(this.userroll === "Basic-Use")
+    if(this.LoginUser.Userroll === "Basic-User")
     {
       this.EditBtn = false;
       this.DeleteBtn = false
     }
-     this.branchDetails = this.service.branchDetails;
   }
   DeleteBtnClik(data:Branch){
     this.getIndex = this.branchDetails.findIndex((e)=>{
