@@ -26,13 +26,13 @@
     <div class="col-md-3">
       <div class="col-mb-3">
         <label for="" class="form-label">ID</label>
-        <input type="text" class="form-control" placeholder="Enter name" #id>
+        <input type="text" class="form-control" placeholder="Enter name" [(ngModel)]="id">
         <label for="" class="form-label">Name</label>
-        <input type="text" class="form-control" placeholder="Enter name" #name>
+        <input type="text" class="form-control" placeholder="Enter name" [(ngModel)]="name">
         <label for="" class="form-label">Location</label>
-        <input type="text" class="form-control" placeholder="Enter name" #location>
+        <input type="text" class="form-control" placeholder="Enter name" [(ngModel)]="location">
         <label for="" class="form-label">gst</label>
-        <input type="text" class="form-control" placeholder="Enter name" #gst>
+        <input type="text" class="form-control" placeholder="Enter name" [(ngModel)]="gst">
         <button class="btn btn-success mt-3" (click)="UpdateUSerDetails()">Update</button>
       </div>
     </div>

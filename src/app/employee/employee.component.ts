@@ -20,9 +20,9 @@ export class EmployeeComponent implements OnInit {
   EditFormVisible: boolean = false;
    EmployeeData:User[]=[]
 
-   @ViewChild('id')id!:ElementRef;
-   @ViewChild('name')name!:ElementRef;
-   @ViewChild('roll')roll!:ElementRef;
+   id:number | null = null
+   name:string | null = null
+   roll:string | null = null
 
   
    constructor(private active:ActivatedRoute,private service:UserService,private auth:AuthserviceService){}
@@ -57,6 +57,7 @@ export class EmployeeComponent implements OnInit {
   }
 
   DeleteBtnClik(data:User){
+    this.EditFormVisible = false;
     this.getIndex = this.EmployeeData.findIndex((e)=>{
       return e.Userid === data.Userid
     })
@@ -81,18 +82,19 @@ export class EmployeeComponent implements OnInit {
       return e.Userid === data.Userid
     })
     
-    this.id.nativeElement.value = data.Userid
-    this.name.nativeElement.value = data.Username
-    this.roll.nativeElement.value = data.Userroll
+    this.id = data.Userid
+    this.name = data.Username
+    this.roll = data.Userroll
   }
 
+
   UpdateUSerDetails(){
-    this.EmployeeData[this.getIndex!].Userid = this.id.nativeElement.value
-    this.EmployeeData[this.getIndex!].Username = this.name.nativeElement.value
-    this.EmployeeData[this.getIndex!].Userroll = this.roll.nativeElement.value
-    this.id.nativeElement.value = ""
-    this.name.nativeElement.value = ""
-    this.roll.nativeElement.value = ""
+    this.EmployeeData[this.getIndex!].Userid = this.id
+    this.EmployeeData[this.getIndex!].Username = this.name
+    this.EmployeeData[this.getIndex!].Userroll = this.roll
+    // this.id = ""
+    this.name= ""
+    this.roll = ""
     this.EditFormVisible = false;
 
   }

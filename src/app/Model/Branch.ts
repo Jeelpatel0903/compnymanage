@@ -1,6 +1,6 @@
 export class Branch{
-    branchId:number|null=null
-    companyId:number|null=null
+    branchId:string|null=null
+    companyId:string|null=null
     branchName:string|null=null
-    branchCount:number|null=null
+    branchCount:string|null=null
 }

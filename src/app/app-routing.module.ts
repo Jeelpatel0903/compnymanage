@@ -12,11 +12,10 @@ import { LoginGuard } from './guard/login.guard';
 import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
-  {path:"", component:RegisterComponent },
+  {path:"", redirectTo:"register" , pathMatch:'full' },
 
   {path:"register",
   canActivate:[LoginGuard],
-
   component:RegisterComponent},
 
   {path:"login",

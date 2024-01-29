@@ -19,10 +19,10 @@ export class CompanyComponent implements OnInit {
   getIndex:number | null = null
   EditFormVisible: boolean = false;
 
-  @ViewChild('id')id!:ElementRef;
-  @ViewChild('name')name!:ElementRef;
-  @ViewChild('location')location!:ElementRef;
-  @ViewChild('gst')gst!:ElementRef;
+  id:number | null = null 
+  name:string | null = null
+  location:string | null = null
+  gst:number | null = null
 
   
   constructor(private active:ActivatedRoute,private service:CompnayService){
@@ -87,25 +87,22 @@ export class CompanyComponent implements OnInit {
       return e.CompanyId === data.CompanyId
     })
 
-    this.id.nativeElement.value = data.CompanyId
-    this.name.nativeElement.value = data.CompanyName
-    this.location.nativeElement.value = data.CompanyLocation
-    this.gst.nativeElement.value = data.CompanyGst
+   this.id = data.CompanyId
+   this.name = data.CompanyName
+    this.location = data.CompanyLocation
+    this.gst = data.CompanyGst
 
   
 
   }
 
   UpdateUSerDetails(){
-    this.companyDetails[this.getIndex!].CompanyId = this.id.nativeElement.value
-    this.companyDetails[this.getIndex!].CompanyName = this.name.nativeElement.value
-    this.companyDetails[this.getIndex!].CompanyLocation = this.location.nativeElement.value
-    this.companyDetails[this.getIndex!].CompanyGst = this.gst.nativeElement.value
-
-    this.id.nativeElement.value = ""
-    this.name.nativeElement.value = ""
-    this.location.nativeElement.value = ""
-    this.gst.nativeElement.value = ""
+    this.companyDetails[this.getIndex!].CompanyId = this.id
+    this.companyDetails[this.getIndex!].CompanyName = this.name
+    this.companyDetails[this.getIndex!].CompanyLocation = this.location
+    this.companyDetails[this.getIndex!].CompanyGst = this.gst
+    this.name = ""
+    this.location = ""
     this.EditFormVisible = false;
 
 

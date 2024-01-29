@@ -21,10 +21,10 @@ export class BranchComponent implements OnInit {
 
   branchDetails:Branch[]=[]
 
-  @ViewChild('id')id!:ElementRef;
-  @ViewChild('name')name!:ElementRef;
-  @ViewChild('count')count!:ElementRef;
-  @ViewChild('compnayid')compnayid!:ElementRef;
+  id:string | null = null
+  name:string | null = null
+  count:string | null = null
+  compnayid:string | null = null
 
   constructor(private active:ActivatedRoute,private service:BranchService) { }
 
@@ -81,23 +81,18 @@ export class BranchComponent implements OnInit {
       return e.branchId === data.branchId
     })
     
-    this.id.nativeElement.value = data.branchId
-    this.name.nativeElement.value = data.branchName
-    this.count.nativeElement.value = data.branchCount
-    this.compnayid.nativeElement.value = data.companyId
+    this.id = data.branchId
+    this.name = data.branchName
+    this.count = data.branchCount
+    this.compnayid = data.companyId
 
   }
 
   UpdateUSerDetails(){
-    this.branchDetails[this.getIndex!].branchId = this.id.nativeElement.value
-    this.branchDetails[this.getIndex!].branchName = this.name.nativeElement.value
-    this.branchDetails[this.getIndex!].branchCount = this.count.nativeElement.value
-    this.branchDetails[this.getIndex!].companyId = this.compnayid.nativeElement.value
-
-    this.id.nativeElement.value = ""
-    this.name.nativeElement.value = ""
-    this.count.nativeElement.value = ""
-    this.compnayid.nativeElement.value = ""
+    this.branchDetails[this.getIndex!].branchId = this.id
+    this.branchDetails[this.getIndex!].branchName = this.name
+    this.branchDetails[this.getIndex!].branchCount = this.count
+    this.branchDetails[this.getIndex!].companyId = this.compnayid
     this.EditFormVisible = false;
 
   }
