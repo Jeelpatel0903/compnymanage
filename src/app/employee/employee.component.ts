@@ -57,15 +57,17 @@ export class EmployeeComponent implements OnInit {
   }
 
   DeleteBtnClik(data:User){
-    this.EditFormVisible = false;
+    // this.EditFormVisible = false;
     this.getIndex = this.EmployeeData.findIndex((e)=>{
       return e.Userid === data.Userid
     })
+    if(this.id === data.Userid && this.EditFormVisible)
+    {
+      this.EditFormVisible=false
+    }
     if(this.getIndex === -1){
       return
     }
-    else
-    {
       console.log(this.getIndex);
       
       this.EmployeeData.splice(this.getIndex,1)
@@ -74,7 +76,6 @@ export class EmployeeComponent implements OnInit {
         text: "Your Item Delete SuccessFully",
         icon: "success"
       });
-    }
   }
   EditBtnClick(data:User){
     this.EditFormVisible = true;
