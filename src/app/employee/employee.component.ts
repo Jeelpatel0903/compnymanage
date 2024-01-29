@@ -17,6 +17,7 @@ export class EmployeeComponent implements OnInit {
   DeleteBtn:boolean = false
   userroll:string | null = null
   getIndex:number | null = null
+  EditFormVisible: boolean = false;
    EmployeeData:User[]=[]
 
    @ViewChild('id')id!:ElementRef;
@@ -75,6 +76,7 @@ export class EmployeeComponent implements OnInit {
     }
   }
   EditBtnClick(data:User){
+    this.EditFormVisible = true;
     this.getIndex = this.EmployeeData.findIndex((e)=>{
       return e.Userid === data.Userid
     })
@@ -91,6 +93,7 @@ export class EmployeeComponent implements OnInit {
     this.id.nativeElement.value = ""
     this.name.nativeElement.value = ""
     this.roll.nativeElement.value = ""
+    this.EditFormVisible = false;
 
   }
 }

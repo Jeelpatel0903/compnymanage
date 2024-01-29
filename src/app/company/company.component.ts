@@ -17,6 +17,7 @@ export class CompanyComponent implements OnInit {
   DeleteBtn:boolean = false
   userroll:string | null = null
   getIndex:number | null = null
+  EditFormVisible: boolean = false;
 
   @ViewChild('id')id!:ElementRef;
   @ViewChild('name')name!:ElementRef;
@@ -80,6 +81,8 @@ export class CompanyComponent implements OnInit {
     }
   }
   EditBtnClick(data:Company){
+    this.EditFormVisible = true;
+
     this.getIndex = this.companyDetails.findIndex((e)=>{
       return e.CompanyId === data.CompanyId
     })
@@ -103,6 +106,8 @@ export class CompanyComponent implements OnInit {
     this.name.nativeElement.value = ""
     this.location.nativeElement.value = ""
     this.gst.nativeElement.value = ""
+    this.EditFormVisible = false;
+
 
   }
 }

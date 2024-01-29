@@ -41,9 +41,8 @@ export class NavbarComponent implements OnInit {
           text: "Your file has been deleted.",
           icon: "success"
         });
-
+        this.auth.logout()
       }
-      this.auth.logout()
     });
   }
 }

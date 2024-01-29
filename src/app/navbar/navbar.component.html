@@ -28,17 +28,28 @@
         <a class="nav-link text-success" style="font-weight: 600;" routerLink="branch" >Branch</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-danger" style="font-weight: 600;" routerLink="branch" (click)="logout()">Log-Out</a>
       </li>
     </ul>
   </div>
   
   <!-- Right side username -->
-  <div class="ml-auto">
-    <span class="navbar-text" style="font-weight: 700;">
-      <i class="fas fa-user">Hello,</i>{{username}}</span>
-    </div>
-  </div>
-</nav>
+<div class="ml-auto">
+  <span class="navbar-text" style="font-weight: 700; margin-right: 50px;">
+    <i class="fas fa-user">Hello,</i>{{username}}
+  </span>
+<!-- Example single danger button -->
+<div class="btn-group">
+  <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+    <i class="bi bi-person"></i>
+  </button>
+  <ul class="dropdown-menu">
+    <li><a class="dropdown-item bi bi-person">User Profile</a></li>
+    <li><a class="nav-link text-danger bi bi-door-open" style="font-weight: 600;" routerLink="branch" (click)="logout()">Log-Out</a></li>
+  </ul>
+</div>
+
+ </div>
+ </div>
+ </nav>
 
 <router-outlet></router-outlet>

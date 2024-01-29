@@ -16,6 +16,8 @@ export class BranchComponent implements OnInit {
   DeleteBtn:boolean = false
   userroll:string | null = null
   getIndex:number | null = null
+  EditFormVisible: boolean = false;
+
 
   branchDetails:Branch[]=[]
 
@@ -73,6 +75,8 @@ export class BranchComponent implements OnInit {
     }
   }
   EditBtnClick(data:Branch){
+    this.EditFormVisible = true;
+
     this.getIndex = this.branchDetails.findIndex((e)=>{
       return e.branchId === data.branchId
     })
@@ -94,6 +98,7 @@ export class BranchComponent implements OnInit {
     this.name.nativeElement.value = ""
     this.count.nativeElement.value = ""
     this.compnayid.nativeElement.value = ""
+    this.EditFormVisible = false;
 
   }
 }
