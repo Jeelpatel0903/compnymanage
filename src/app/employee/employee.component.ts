@@ -6,6 +6,7 @@ import { UserService } from '../services/user.service';
 import { User } from './../Model/User';
 import { AuthserviceService } from '../services/authservice.service';
 
+
 @Component({
   selector: 'app-employee',
   templateUrl: './employee.component.html',
@@ -99,4 +100,7 @@ export class EmployeeComponent implements OnInit {
     this.EditFormVisible = false;
 
   }
+
+
+
 }

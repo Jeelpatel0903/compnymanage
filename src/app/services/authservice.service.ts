@@ -13,8 +13,7 @@ export class AuthserviceService {
   constructor(private route:Router) { }
 
   users:User[]=[]
-  roll:string | null = null
-
+  roll:string[]=[]
   LoginFunction(Username:string,UserPassword:string): boolean{
     
     if(Username === "" || UserPassword === "")
@@ -49,7 +48,9 @@ export class AuthserviceService {
       this.users[founduser].islogin = true
       sessionStorage.setItem('loguser', JSON.stringify(this.users[founduser]));
       localStorage.setItem('token',JSON.stringify(this.islogin))
-      // this.roll = this.users[founduser].Userroll
+      this.roll = this.users[founduser].Permission
+      console.log(this.roll);
+      
       Swal.fire({
         title: "Good job!",
         text: "Your Are Success Fully Login",

@@ -4,5 +4,5 @@ export class User {
     Userpassword :string | null = null
     Userroll : string | null = null;
     islogin : boolean = false
-
+    Permission:string[]=[]
 }

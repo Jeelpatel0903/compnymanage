@@ -10,6 +10,8 @@ import { BranchComponent } from './branch/branch.component';
 import { AuthGuard } from './guard/auth.guard';
 import { LoginGuard } from './guard/login.guard';
 import { HomeComponent } from './home/home.component';
+import { NotfoundComponent } from './notfound/notfound.component';
+import { RoleguardGuard } from './guard/roleguard.guard';
 
 const routes: Routes = [
   {path:"", redirectTo:"register" , pathMatch:'full' },
@@ -32,17 +34,27 @@ const routes: Routes = [
      },
     {
       path:"employee",
-      component:EmployeeComponent
+      component:EmployeeComponent,
+      canActivate:[RoleguardGuard],
+      data:{role:'employee'}
     },
     {
       path:"compnay",
-      component:CompanyComponent
+      component:CompanyComponent,
+      canActivate:[RoleguardGuard],
+      data:{role:'company'}
     },{
       path:"branch",
-      component:BranchComponent
+      component:BranchComponent,
+      canActivate:[RoleguardGuard],
+      data:{role:'branch'}
     }
   ]
   
+  },
+  {
+    path:"**",
+    component:NotfoundComponent
   }
 
 ];

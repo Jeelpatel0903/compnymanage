@@ -12,6 +12,8 @@ import { CompanyComponent } from './company/company.component';
 import { BranchComponent } from './branch/branch.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
+import { NotfoundComponent } from './notfound/notfound.component';
+
 // import { EmployeeService } from './services/employee.service';
 
 @NgModule({
@@ -24,7 +26,8 @@ import { HomeComponent } from './home/home.component';
     CompanyComponent,
     BranchComponent,
     NavbarComponent,
-    HomeComponent
+    HomeComponent,
+    NotfoundComponent,
   ],
   imports: [
     BrowserModule,

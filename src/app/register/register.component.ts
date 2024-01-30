@@ -15,9 +15,9 @@ export class RegisterComponent implements OnInit {
   @ViewChild('password')password!: ElementRef;
 
   userdata:User[]=[
-    {Userid:1,Username:"Jeel",Userpassword:"123456",Userroll:"Super-Admin",islogin:false},
-    {Userid:2,Username:"Arjun",Userpassword:"111111",Userroll:"Admin",islogin:false},
-    {Userid:3,Username:"Manthan",Userpassword:"000000",Userroll:"Basic-User",islogin:false}
+    {Userid:1,Username:"Jeel",Userpassword:"123456",Userroll:"Super-Admin",islogin:false,Permission:["employee","company","branch"]},
+    {Userid:2,Username:"Arjun",Userpassword:"111111",Userroll:"Admin",islogin:false,Permission:["employee","company"]},
+    {Userid:3,Username:"Manthan",Userpassword:"000000",Userroll:"Basic-User",islogin:false,Permission:["employee"]}
   ]
   constructor(private route:Router) { }
 
@@ -49,7 +49,8 @@ export class RegisterComponent implements OnInit {
       Username: username,
       Userpassword: userpassword,
       Userroll: "Basic-User",
-      islogin: false
+      islogin: false,
+      Permission:["employee"]
     });
   
     localStorage.setItem("Userdata", JSON.stringify(this.userdata));
