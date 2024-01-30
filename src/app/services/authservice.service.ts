@@ -48,8 +48,8 @@ export class AuthserviceService {
       this.users[founduser].islogin = true
       sessionStorage.setItem('loguser', JSON.stringify(this.users[founduser]));
       localStorage.setItem('token',JSON.stringify(this.islogin))
-      this.roll = this.users[founduser].Permission
-      console.log(this.roll);
+      // this.roll = this.users[founduser].Permission
+      // console.log(this.roll);
       
       Swal.fire({
         title: "Good job!",
