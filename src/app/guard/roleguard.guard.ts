@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRoute, ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { ActivatedRoute, ActivatedRouteSnapshot, CanActivate, CanDeactivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthserviceService } from '../services/authservice.service';
 import { User } from '../Model/User';
 import Swal from 'sweetalert2';
+import { RegisterComponent } from '../register/register.component';
 
 @Injectable({
   providedIn: 'root'
 })
-export class RoleguardGuard implements CanActivate {
+export class RoleguardGuard implements CanActivate,CanDeactivate<RegisterComponent> {
   a!:User
   constructor(private active:ActivatedRoute, private authservice:AuthserviceService ,private route:Router){}
   canActivate(
@@ -17,7 +18,7 @@ export class RoleguardGuard implements CanActivate {
       const requirerole1 = route.data['role'];
       // const requirerole2 = route.data['role2'];
       // const requirerole3 = route.data['role3'];
-
+      
       const  existuserRole = sessionStorage.getItem('loguser')
       if(existuserRole){
         this.a = JSON.parse(existuserRole)
@@ -34,13 +35,21 @@ export class RoleguardGuard implements CanActivate {
       {
         this.route.navigate(['/dashbord'])
         Swal.fire({
-            title:'Can Not Access',
-            icon:'warning'
-          })
-          return false;
-
+          title:'Can Not Access',
+          icon:'warning'
+        })
+        return false;
+        
       }
-   
-  }
-  
+      
+    }
+    
+    canDeactivate(component: RegisterComponent, currentRoute: ActivatedRouteSnapshot, currentState: RouterStateSnapshot, nextState?: RouterStateSnapshot | undefined): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
+      
+      return component.canexit()
+
+    }
+    
+    
+
 }

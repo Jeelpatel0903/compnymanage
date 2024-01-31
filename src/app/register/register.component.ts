@@ -13,6 +13,7 @@ export class RegisterComponent implements OnInit {
   userid:number = 0
   @ViewChild('name')name!: ElementRef;
   @ViewChild('password')password!: ElementRef;
+  cango:boolean = false
 
   userdata:User[]=[
     {Userid:1,Username:"Jeel",Userpassword:"123456",Userroll:"Super-Admin",islogin:false,Permission:["employee","company","branch"]},
@@ -64,11 +65,18 @@ export class RegisterComponent implements OnInit {
       text: "You are Successfully Added",
       icon: "success"
     });
-  
+    this.cango =true
     this.route.navigate(['login']);
   }
   
-  
+  canexit(){
+    if((this.name.nativeElement.value || this.password.nativeElement.value) && !this.cango){
+      return confirm("are you sure")
+    }
+    else{
+      return true
+    }
+  }
 
 
 
