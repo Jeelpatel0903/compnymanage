@@ -3,6 +3,7 @@ import { ActivatedRoute, ActivatedRouteSnapshot, CanActivate, Router, RouterStat
 import { Observable } from 'rxjs';
 import { AuthserviceService } from '../services/authservice.service';
 import { User } from '../Model/User';
+import Swal from 'sweetalert2';
 
 @Injectable({
   providedIn: 'root'
@@ -25,14 +26,21 @@ export class RoleguardGuard implements CanActivate {
       console.log(existuserRole);
       console.log(requirerole1);
       
-      
-      
       if(this.a.Permission.includes(requirerole1))
       {
         return true
       }
-    this.route.navigate(['/dashbord'])
-    return false;
+      else
+      {
+        this.route.navigate(['/dashbord'])
+        Swal.fire({
+            title:'Can Not Access',
+            icon:'warning'
+          })
+          return false;
+
+      }
+   
   }
   
 }
