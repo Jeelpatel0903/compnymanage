@@ -1,6 +1,7 @@
 <table class="table table-hover">
     <thead>
       <tr>
+        <th scope="col">Add Favourite</th>
         <th scope="col">Company ID</th>
         <th scope="col">Company Name</th>
         <th scope="col">Company Location</th>
@@ -11,13 +12,18 @@
     </thead>
     <tbody *ngFor="let item of companyDetails">
       <tr>
+        <td (click)="addfavourite(item)"><i class="bi bi-star text-warning"></i></td>
         <th scope="row">{{item.CompanyId}}</th>
         <td>{{item.CompanyName}}</td>
         <td>{{item.CompanyLocation}}</td>
         <td>{{item.CompanyGst}}</td>
-        <td *ngIf="EditBtn" (click)="EditBtnClick(item)"><i class="bi bi-pencil-square"></i></td>
+        <td *ngIf="EditBtn" (click)="EditBtnClick(item)"><i class="bi bi-pencil-square" ></i></td>
             <td *ngIf="DeleteBtn" (click)="DeleteBtnClik(item)"><i class="bi bi-trash3-fill text-danger"></i></td>
       </tr>
+
+      <!-- <tr *ngFor="let item of datavalue">
+        <td>{{item.name}}</td>
+      </tr> -->
     </tbody>
   </table>
 

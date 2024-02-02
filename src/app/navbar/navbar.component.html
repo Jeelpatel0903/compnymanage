@@ -28,8 +28,15 @@
         <a class="nav-link text-success" style="font-weight: 600;" routerLink="branch" >Branch</a>
       </li>
       <li class="nav-item">
+        <a class="nav-link text-success" style="font-weight: 600;" routerLink="branch" >Favourite</a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link text-danger bi bi-door-open" style="font-weight: 600;"  (click)="logout()">Log-Out</a>
       </li>
+      <li class="nav-item">
+        <a  *ngIf="jeel" class="nav-link text-warning bi bi-star-fill" style="font-weight: 600;">{{jeel}}</a>
+      </li>
+    
     </ul>
   </div>
   
@@ -53,4 +60,14 @@
  </div>
  </nav>
 
-<router-outlet></router-outlet>
+ <router-outlet></router-outlet>
+<!-- <div *ngIf="showeloader">
+  <span class="loader"></span>
+</div> -->
+
+<div class="loader bk"  *ngIf="showeloader">
+	<div class="bar"></div>
+	<div class="bar2"></div>
+	<div class="bar3"></div>
+	<div class="bar4"></div>
+</div>

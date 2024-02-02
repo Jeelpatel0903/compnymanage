@@ -1,17 +1,25 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRoute, ActivatedRouteSnapshot, CanActivate, CanDeactivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { ActivatedRoute, ActivatedRouteSnapshot, CanActivate, CanDeactivate, Resolve, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthserviceService } from '../services/authservice.service';
 import { User } from '../Model/User';
 import Swal from 'sweetalert2';
 import { RegisterComponent } from '../register/register.component';
+import { UserService } from './../services/user.service';
+
+export interface DeactivateInterface{
+  canDeactivateAccess():boolean
+}
+
 
 @Injectable({
   providedIn: 'root'
 })
-export class RoleguardGuard implements CanActivate,CanDeactivate<RegisterComponent> {
+
+
+export class RoleguardGuard implements CanActivate,CanDeactivate<DeactivateInterface>,Resolve<User[]>{
   a!:User
-  constructor(private active:ActivatedRoute, private authservice:AuthserviceService ,private route:Router){}
+  constructor(private active:ActivatedRoute, private authservice:AuthserviceService ,private route:Router,private userservice:UserService){}
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
@@ -44,12 +52,14 @@ export class RoleguardGuard implements CanActivate,CanDeactivate<RegisterCompone
       
     }
     
-    canDeactivate(component: RegisterComponent, currentRoute: ActivatedRouteSnapshot, currentState: RouterStateSnapshot, nextState?: RouterStateSnapshot | undefined): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
+    canDeactivate(component: DeactivateInterface, currentRoute: ActivatedRouteSnapshot, currentState: RouterStateSnapshot, nextState?: RouterStateSnapshot | undefined): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
       
-      return component.canexit()
+      return component.canDeactivateAccess()
 
     }
     
-    
+    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<User[]> {
+      return this.userservice.getdata()
+    }
 
 }

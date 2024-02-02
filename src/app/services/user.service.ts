@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { User } from '../Model/User';
+import { Observable,delay,from,of } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
@@ -15,5 +17,15 @@ export class UserService {
     { Userid: 4, Username: "Alvi", Userpassword: "456789", Userroll: "Basic-User", islogin: false ,Permission:["employee"]},
     { Userid: 5, Username: "Ayuhsi", Userpassword: "123456", Userroll: "Basic-User", islogin: false,Permission:["employee"]},
   ]
+
+  getdata(){
+  return new Observable<User[]>((e)=>{
+    console.log(e);
+    setTimeout(() => {
+      e.next(this.user)
+    }, 2000);
+  })
+  }
+
 
 }

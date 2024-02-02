@@ -56,6 +56,7 @@ export class AuthserviceService {
         text: "Your Are Success Fully Login",
         icon: "success"
       });
+      
       this.route.navigate(['/dashbord'])
       return true
     }

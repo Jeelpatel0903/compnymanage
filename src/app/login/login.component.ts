@@ -12,6 +12,7 @@ import { AuthserviceService } from '../services/authservice.service';
 })
 export class LoginComponent implements OnInit {
 
+  cango:boolean=false
 
   @ViewChild('username')username!: ElementRef;
   @ViewChild('password')password!: ElementRef;
@@ -23,10 +24,22 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  canDeactivateAccess(){
+    if((this.username.nativeElement.value || this.password.nativeElement.value) && !this.cango){
+      return confirm("are you sure")
+    }
+    else{
+      return true
+    }
+}
+
   LoginFunction(){
     const username= this.username.nativeElement.value;
     const password= this.password.nativeElement.value;
+    this.cango =true
     this.auth.LoginFunction(username,password)
 
   }
+
+
 }

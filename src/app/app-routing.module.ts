@@ -23,6 +23,8 @@ const routes: Routes = [
 
   {path:"login",
   canActivate:[LoginGuard],
+  canDeactivate:[RoleguardGuard],
+
   component:LoginComponent},
 
   {path:"dashbord", 
@@ -37,18 +39,23 @@ const routes: Routes = [
       path:"employee",
       component:EmployeeComponent,
       canActivate:[RoleguardGuard],
-      data:{role:'employee'}
+      data:{role:'employee'},
+      resolve:{resolvedata:RoleguardGuard}
     },
     {
       path:"compnay",
       component:CompanyComponent,
       canActivate:[RoleguardGuard],
-      data:{role:'company'}
+      data:{role:'company',hobby:[{name:"manthan",age:"21"}]},
+      // data:{name:'Jeel',gst:123},
+      
     },{
       path:"branch",
       component:BranchComponent,
       canActivate:[RoleguardGuard],
-      data:{role:'branch'}
+      data:{role:'branch'},
+      
+
     }
   ]
   

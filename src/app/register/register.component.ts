@@ -69,7 +69,7 @@ export class RegisterComponent implements OnInit {
     this.route.navigate(['login']);
   }
   
-  canexit(){
+  canDeactivateAccess(){
     if((this.name.nativeElement.value || this.password.nativeElement.value) && !this.cango){
       return confirm("are you sure")
     }

@@ -1,11 +1,20 @@
-<table class="table table-hover">
+<!-- data.component.html -->
+<!-- <div class="loader"  *ngIf="loading">
+	<div class="bar"></div>
+	<div class="bar2"></div>
+	<div class="bar3"></div>
+	<div class="bar4"></div>
+</div> -->
+<div>
+    <div >
+      <table class="table table-hover">
         <thead>
           <tr>
             <th scope="col">ID</th>
             <th scope="col">Name</th>
             <th scope="col">User Roll</th>
             <th *ngIf="EditBtn" scope="col" colspan="2">Action</th>
-
+    
           </tr>
         </thead>
         <tbody *ngFor="let item of EmployeeData">
@@ -16,12 +25,13 @@
             <td *ngIf="EditBtn" (click)="EditBtnClick(item)"><i class="bi bi-pencil-square"></i></td>
             <td *ngIf="DeleteBtn" (click)="DeleteBtnClik(item)"><i class="bi bi-trash3-fill text-danger"></i></td>
             <!-- Button to trigger modal -->
-
-
+    
+    
           </tr>
         </tbody>
-      </table>
 
+      </table>
+    
       <div *ngIf="EditFormVisible">
         <div class="container mt-5" >
           <h1>Edit From</h1>
@@ -39,3 +49,11 @@
           </div>
         </div>
       </div>
+    
+    </div>
+    
+</div>
+
+
+  <!-- Display your data here -->
+

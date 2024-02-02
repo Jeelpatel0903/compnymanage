@@ -14,4 +14,5 @@ export class BranchService {
     {branchId:"204",companyId:"104",branchName:"Britaniya",branchCount:"3"},
     {branchId:"205",companyId:"105",branchName:"Sunfeast",branchCount:"2"},
   ]
+  
 }
